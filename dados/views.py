@@ -7,6 +7,7 @@ from rest_framework import status
 
 import requests
 import random
+import os
 
 # Create your views here.
 class DadoView(APIView):
@@ -19,4 +20,5 @@ class DadoView(APIView):
         response = {
             "dados":dados_array
         }
+        print(os.environ['PUBLIC_JWT'])
         return Response(response, status=status.HTTP_200_OK)
