@@ -26,10 +26,12 @@ class DadoView(APIView):
                 jwt.unregister_algorithm('RS256')
                 jwt.register_algorithm('RS256', RSAAlgorithm(RSAAlgorithm.SHA256))
                 data = jwt.decode(token[1], public_key, audience='2' ,algorithm='RS256')
-                valid = False
+                valid = False                
                 for scope in data['scopes']:
                     if scope == "dados.tirar":
                         valid = True
+                print("Scopes de token "+data['scopes'])
+                print("El scope buscado es dados.tirar, el token es "+valid)
                 if not valid:
                     return Response(status=status.HTTP_401_UNAUTHORIZED)
             except:
@@ -40,5 +42,5 @@ class DadoView(APIView):
         response = {
             "dados":dados_array
         }
-        print(response)
+        print("Dados retornados: "+dados_array)
         return Response(response, status=status.HTTP_200_OK)
