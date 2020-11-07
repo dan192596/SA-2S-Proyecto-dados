@@ -31,7 +31,7 @@ class DadoView(APIView):
                     if scope == "dados.tirar":
                         valid = True
                 print("Scopes de token "+str(data['scopes']))
-                print("El scope buscado es dados.tirar, el token es "+valid)
+                print("El scope buscado es dados.tirar, el token es "+str(valid))
                 if not valid:
                     return Response(status=status.HTTP_401_UNAUTHORIZED)
             except:
