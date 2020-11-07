@@ -42,5 +42,5 @@ class DadoView(APIView):
         response = {
             "dados":dados_array
         }
-        print("Dados retornados: "+dados_array)
+        print("Dados retornados: "+str(dados_array))
         return Response(response, status=status.HTTP_200_OK)
