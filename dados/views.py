@@ -25,7 +25,7 @@ class DadoView(APIView):
                 public_key = f.read()
                 jwt.unregister_algorithm('RS256')
                 jwt.register_algorithm('RS256', RSAAlgorithm(RSAAlgorithm.SHA256))
-                data = jwt.decode(token[1], public_key, audience='2' ,algorithm='RS256')
+                data = jwt.decode(token[1], public_key, verify_aud=False, algorithm='RS256')
                 valid = False                
                 for scope in data['scopes']:
                     if scope == "dados.tirar":
